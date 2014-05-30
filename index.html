@@ -34,7 +34,7 @@
 			//putFooterToBottom();
 			loadXkcdData("");
 			$('#descComic').on('click',function(){
-				alert(title);
+				$('#comicSpan').html(title);
 			});
 
 			$('#prevComic').on('click',function(){
@@ -51,7 +51,7 @@
 
 		function loadXkcdData (comicId) {
 			var url = "https://www.xkcd.com"+comicId;
-			$.get( url, function( data ) {
+			var jqxhr = $.get( url, function( data ) {
 				//$( ".result" ).html( data );
 				html = $(data);
 				var tmp = html.find('#comic').html();
@@ -62,6 +62,8 @@
 				next = html.find('a[rel=next]').attr('href');
 				$('#titleComic').html("XKCD:"+$(tmp).attr('alt'));
 				
+			}).fail(function() {
+			    alert( "Cannot Connect: Check Your Network/Wi-fi Connection" );
 			});
 		}
 		function putFooterToBottom () {
@@ -89,7 +91,7 @@
 			<div data-role="navbar" style="width:98%;float:left">
 					<ul>
 						<li><a href="#" id="prevComic">Prev</a></li>
-						<li><a href="#" id="descComic">Comic Info</a></li>
+						<li><a href="#popupComicInfo" data-position-to="window" data-transition="fade" data-rel="popup" id="descComic">Comic Info</a></li>
 						<li><a href="#" id="nextComic">Next</a></li>
 					</ul>
 			</div>		
@@ -102,6 +104,10 @@
 				<p>XKCD Comic Viewer.<p>
 				<p>Created By: <a href="http://www.rushis.com">Rushi</a><p>
 		</div>
+		<div data-role="popup" id="popupComicInfo" data-overlay-theme="a" class="ui-content" >
+	    	<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+				<span id="comicSpan"></span>
+		</div>		
 	</div>
 </body>
 </html>

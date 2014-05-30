@@ -14,27 +14,20 @@
 			text-align: center;
 		}
 		#descComic{
-			text-overflow: ellipsis;overflow: hidden;white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
 		}
-/* 		[data-role=page]{
-		height: 100% !important; 
-		position:relative !important;
-	}
-	[data-role=footer]{
-		bottom:0; 
-		position:absolute !important; 
-		top: auto !important; 
-		width:100%;
-	}	 */	
 	</style>
 	<script type="text/javascript">
-		var html,title,prev,next;
+		var html,title,prev,next,comicTitle;
 		$(document).ready(function() {
 
 			//putFooterToBottom();
 			loadXkcdData("");
 			$('#descComic').on('click',function(){
-				$('#comicSpan').html(title);
+				var tmp = "<center><b>"+comicTitle +":</b></center><br/>" + title ;
+				$('#comicSpan').html(tmp);
 			});
 
 			$('#prevComic').on('click',function(){
@@ -44,9 +37,6 @@
 			$('#nextComic').on('click',function(){
 				loadXkcdData (next);
 			});
-
-			
-			//$.mobile.fixedToolbars.setTouchToggleEnabled(true);
 		});
 
 		function loadXkcdData (comicId) {
@@ -60,7 +50,8 @@
 				title = $(tmp).attr('title');
 				prev = html.find('a[rel=prev]').attr('href');
 				next = html.find('a[rel=next]').attr('href');
-				$('#titleComic').html("XKCD:"+$(tmp).attr('alt'));
+				comicTitle = $(tmp).attr('alt');
+				$('#titleComic').html("XKCD:"+comicTitle);
 				
 			}).fail(function() {
 			    alert( "Cannot Connect: Check Your Network/Wi-fi Connection" );

@@ -43,8 +43,8 @@ This code may be freely distributed under the MIT License
 
         this.mdown = false; //desktop drag
 
-        this.init = false;
-        //this.checkRequestAnimationFrame();
+        this.init = true;
+        this.checkRequestAnimationFrame();
         requestAnimationFrame(this.animate.bind(this));
 
         this.setEventListeners();
@@ -97,7 +97,7 @@ This code may be freely distributed under the MIT License
                 this.lastZoomScale = zoomScale;
             }    
 
-            return zoom;
+            return zoom;animate
         },
 
         doZoom: function(zoom) {

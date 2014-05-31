@@ -74,7 +74,7 @@ This code may be freely distributed under the MIT License
 
             this.context.drawImage(
                 this.imgTexture, 
-                (this.canvas.width-this.imgTexture.width)/2, 0/*(this.canvas.height-this.imgTexture.height)/2*/, 
+                (this.canvas.width-this.imgTexture.width)/2, (this.canvas.height-this.imgTexture.height)/2, 
                 this.imgTexture.width, 
                 this.imgTexture.height);
 
@@ -97,7 +97,7 @@ This code may be freely distributed under the MIT License
                 this.lastZoomScale = zoomScale;
             }    
 
-            return zoom;animate
+            return zoom;
         },
 
         doZoom: function(zoom) {

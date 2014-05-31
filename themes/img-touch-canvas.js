@@ -44,7 +44,7 @@ This code may be freely distributed under the MIT License
         this.mdown = false; //desktop drag
 
         this.init = false;
-        this.checkRequestAnimationFrame();
+        //this.checkRequestAnimationFrame();
         requestAnimationFrame(this.animate.bind(this));
 
         this.setEventListeners();
@@ -54,7 +54,7 @@ This code may be freely distributed under the MIT License
     ImgTouchCanvas.prototype = {
         animate: function() {
             //set scale such as image cover all the canvas
-/*            if(!this.init) {
+            if(!this.init) {
                 if(this.imgTexture.width) {
                     var scaleRatio = null;
                     if(this.canvas.clientWidth > this.canvas.clientHeight) {
@@ -69,7 +69,7 @@ This code may be freely distributed under the MIT License
                     this.init = true;
                 }
             }
-*/
+
             this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
             this.context.drawImage(

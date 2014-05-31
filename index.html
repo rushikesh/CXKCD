@@ -51,6 +51,8 @@ max-width:90%; */
 
 		function loadXkcdData (comicId) {
 			
+			var w,h;
+
 			var url = "https://www.xkcd.com"+comicId;
 			
 			var jqxhr = $.get( url, function( data ) {
@@ -83,16 +85,24 @@ max-width:90%; */
 						}
 						new_width = imgWidth*s;
 						new_height = imgHeight*s;
+						w = new_width;
+						h = new_height;
 
-						$('#mycanvas').css('width',new_width+"px").css('height',new_height+"px");
+						//$('#mycanvas').css('width',new_width+"px").css('height',new_height+"px");
 
 					}else{
-						$('#mycanvas').css('width',imgWidth+"px").css('height',imgHeight+"px");
+						//$('#mycanvas').css('width',imgWidth+"px").css('height',imgHeight+"px");
+						w = imgWidth;
+						h = imgHeight;
 					}
 
 					gesturableImg = new ImgTouchCanvas({
 				        canvas: document.getElementById('mycanvas'),
-				        path: ""+imgSrc
+				        path: ""+imgSrc,
+				        imgWidth: w,
+				        imgHeight: h,
+				        canvasWidth: deviceWidth,
+				        canvasHeight: deviceHeight
 			  		});
 
 					title = $(tmp).attr('title');

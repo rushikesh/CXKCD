@@ -18,8 +18,8 @@ This code may be freely distributed under the MIT License
         }
 
         this.canvas         = options.canvas;
-        this.canvas.width   = this.canvas.clientWidth;
-        this.canvas.height  = this.canvas.clientHeight;
+        this.canvas.width   = options.canvasWidth;
+        this.canvas.height  = options.canvasHeight;
         this.context        = this.canvas.getContext('2d');
 
         this.desktop = options.desktop || false; //non touch events
@@ -34,6 +34,8 @@ This code may be freely distributed under the MIT License
         };
         this.imgTexture = new Image();
         this.imgTexture.src = options.path;
+        this.imgTexture.width = options.imgWidth;
+        this.imgTexture.height = options.imgHeight;
 
         this.lastZoomScale = null;
         this.lastX = null;
@@ -52,7 +54,7 @@ This code may be freely distributed under the MIT License
     ImgTouchCanvas.prototype = {
         animate: function() {
             //set scale such as image cover all the canvas
-            if(!this.init) {
+/*            if(!this.init) {
                 if(this.imgTexture.width) {
                     var scaleRatio = null;
                     if(this.canvas.clientWidth > this.canvas.clientHeight) {
@@ -67,14 +69,14 @@ This code may be freely distributed under the MIT License
                     this.init = true;
                 }
             }
-
+*/
             this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
             this.context.drawImage(
                 this.imgTexture, 
-                this.position.x, this.position.y, 
-                this.scale.x * this.imgTexture.width, 
-                this.scale.y * this.imgTexture.height);
+                (this.canvas.width-this.imgTexture.width)/2, 0/*(this.canvas.height-this.imgTexture.height)/2*/, 
+                this.imgTexture.width, 
+                this.imgTexture.height);
 
             requestAnimationFrame(this.animate.bind(this));
         },

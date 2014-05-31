@@ -18,8 +18,8 @@ This code may be freely distributed under the MIT License
         }
 
         this.canvas         = options.canvas;
-        this.canvas.width   = options.canvasWidth;
-        this.canvas.height  = options.canvasHeight;
+        this.canvas.width   = this.canvas.clientWidth;
+        this.canvas.height  = this.canvas.clientHeight;
         this.context        = this.canvas.getContext('2d');
 
         this.desktop = options.desktop || false; //non touch events
@@ -34,8 +34,6 @@ This code may be freely distributed under the MIT License
         };
         this.imgTexture = new Image();
         this.imgTexture.src = options.path;
-        this.imgTexture.width = options.imgWidth;
-        this.imgTexture.height = options.imgHeight;
 
         this.lastZoomScale = null;
         this.lastX = null;
@@ -43,7 +41,7 @@ This code may be freely distributed under the MIT License
 
         this.mdown = false; //desktop drag
 
-        this.init = true;
+        this.init = false;
         this.checkRequestAnimationFrame();
         requestAnimationFrame(this.animate.bind(this));
 
@@ -74,9 +72,9 @@ This code may be freely distributed under the MIT License
 
             this.context.drawImage(
                 this.imgTexture, 
-                (this.canvas.width-this.imgTexture.width)/2, (this.canvas.height-this.imgTexture.height)/2, 
-                this.imgTexture.width, 
-                this.imgTexture.height);
+                this.position.x, this.position.y, 
+                this.scale.x * this.imgTexture.width, 
+                this.scale.y * this.imgTexture.height);
 
             requestAnimationFrame(this.animate.bind(this));
         },

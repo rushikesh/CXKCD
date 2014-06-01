@@ -18,30 +18,34 @@ This code may be freely distributed under the MIT License
         }
 
         this.canvas         = options.canvas;
-        this.canvas.width   = this.canvas.clientWidth;
-        this.canvas.height  = this.canvas.clientHeight;
+        this.canvas.width   = options.canvasWidth;
+        this.canvas.height  = options.canvasHeight;
         this.context        = this.canvas.getContext('2d');
 
         this.desktop = options.desktop || false; //non touch events
         
+
+        this.imgTexture = new Image();
+        this.imgTexture.src = options.path;
+        this.imgTexture.width = options.imgWidth;
+        this.imgTexture.height = options.imgHeight;
+
         this.position = {
-            x: 0,
+            x: (this.canvas.width-this.imgTexture.width)/2,
             y: 0
         };
         this.scale = {
-            x: 0.5,
-            y: 0.5
-        };
-        this.imgTexture = new Image();
-        this.imgTexture.src = options.path;
+            x: 1,
+            y: 1
+        };        
 
         this.lastZoomScale = null;
         this.lastX = null;
         this.lastY = null;
 
-        this.mdown = false; //desktop drag
+        this.mdown = true; //desktop drag
 
-        this.init = false;
+        this.init = true;
         this.checkRequestAnimationFrame();
         requestAnimationFrame(this.animate.bind(this));
 

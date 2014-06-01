@@ -95,7 +95,8 @@ max-width:90%; */
 						w = imgWidth;
 						h = imgHeight;
 					}
-					//$('#mycanvas').css('width',imgWidth+"px").css('height',imgHeight+"px");
+					$('#mycanvas').width= deviceWidth;
+					$('#mycanvas').height = deviceHeight;
 					
 					gesturableImg = new ImgTouchCanvas({
 				        canvas: document.getElementById('mycanvas'),

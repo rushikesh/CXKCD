@@ -47,6 +47,14 @@ max-width:90%; */
 				loadXkcdData (next);
 			});
 
+			$(document).ajaxStart(function() {
+			    $.mobile.loading('show');
+			});
+
+			$(document).ajaxStop(function() {
+			    $.mobile.loading('hide');
+			});			
+
 		});
 
 		function loadXkcdData (comicId) {
